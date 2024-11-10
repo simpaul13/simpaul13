@@ -14,11 +14,3 @@
   <img alt="laravel" src="https://img.shields.io/badge/Laravel-F05340?logo=laravel&logoColor=white" />
   <img alt="AdonisJS" src="https://img.shields.io/badge/AdonisJS-330066?style=flat-square&logo=adonisjs&logoColor=white"> 
 </p>
-
-### 📊 Github Stats
-<a href='https://github.com/rahul-jha98/github-stats-transparent'>
-
-![Stats Overview](https://raw.githubusercontent.com/simpaul13/github-stats-transparent/output/generated/overview.svg)
-![Most Used](https://raw.githubusercontent.com/simpaul13/github-stats-transparent/output/generated/languages.svg)
-
-</a>
