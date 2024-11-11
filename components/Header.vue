@@ -9,7 +9,7 @@
     <div class="container mx-auto px-4 py-4 relative z-10">
       <div class="flex items-center justify-between">
         <!-- Brand Logo -->
-        <div :class="['font-bold', textClasses, brandTextSize]">
+        <div :class="['font-bold', textClasses, brandTextSize]" v-if="navSettings.showBrand === true">
           Brand
         </div>
 
@@ -37,7 +37,7 @@
         </div>
 
         <!-- Navigation Links (Desktop) -->
-        <div class="hidden md:flex flex-1 justify-center space-x-8">
+        <div class="hidden md:flex flex-1 space-x-8" :class="navSettings.navLinkPosition">
             <div v-for="link in navLinks" :key="link.name">
                 <a
                     v-if="link.type === 'a'"
@@ -63,13 +63,13 @@
     <transition name="fade">
       <div
         v-if="isMenuOpen"
-        class="md:hidden fixed inset-0 bg-white bg-opacity-95 z-40"
+        class="md:hidden fixed inset-0 dark:bg-gray-800 dark:bg-opacity-95 dark:text-white  bg-opacity-95 z-40"
       >
-        <div class="container text-center mx-auto px-4 py-4" v-for="link in navLinks">
+        <div class="container text-center mx-auto px-4 py-4" v-for="link in navLinks" :key="link.name">
             <a
                 v-if="link.type === 'a'"
                 :href="link.href"
-                class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded"
+                class="block px-4 py-2 rounded"
                 @click="toggleMenu"
                 :class="mobileNavLinkTextSize"
             >
@@ -78,7 +78,7 @@
             <router-link
                 v-if="link.type === 'router-link'"
                 :to="link.href"
-                class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded"
+                class="block px-4 py-2 rounded"
                 @click="toggleMenu"
                 :class="mobileNavLinkTextSize"
             >
@@ -91,97 +91,79 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      navLinks: [
-        {
-          name: 'Home',
-          href: '#home',
-          type: 'a',
-        },
-        {
-          name: 'About',
-          href: '#about',
-          type: 'a',
-        },
-        {
-          name: 'Work',
-          href: '#work',
-          type: 'a',
-        },
-        {
-          name: 'Contact',
-          href: '#contact',
-          type: 'a',
-        },
-      ],
-      isMenuOpen: false,
-      isScrolled: false,
-    };
-  },
-  computed: {
-    navClasses() {
-      const baseClasses =
-        'fixed w-full z-50 transition-all duration-300 ease-in-out';
-      const scrolledBackground = 'bg-white shadow-md';
-      return [
-        baseClasses,
-        this.isScrolled ? scrolledBackground : 'bg-transparent',
-      ];
+  import { navLinks, navSettings } from '~/assets/js/data';
+
+  export default {
+    data() {
+      return {
+        navLinks,
+        navSettings,
+        isMenuOpen: false,
+        isScrolled: false,
+      };
     },
-    textClasses() {
-      return this.isScrolled ? 'text-gray-800' : 'text-white';
+    computed: {
+      navClasses() {
+        const baseClasses =
+          'fixed w-full z-50 transition-all duration-300 ease-in-out';
+        const scrolledBackground = 'dark:bg-black bg-white  shadow-md';
+        return [
+          baseClasses,
+          this.isScrolled ? scrolledBackground : 'bg-transparent',
+        ];
+      },
+      textClasses() {
+        return this.isScrolled ? 'dark:text-white text-gray-800' : 'text-white';
+      },
+      linkHoverClasses() {
+        return 'hover:text-blue-300 transition duration-200';
+      },
+      iconStrokeColor() {
+        return this.isScrolled ? 'currentColor' : '#ffffff';
+      },
+      brandTextSize() {
+        return 'text-2xl md:text-xl';
+      },
+      navLinkTextSize() {
+        return 'text-lg';
+      },
+      mobileNavLinkTextSize() {
+        return 'text-xl';
+      },
     },
-    linkHoverClasses() {
-      return 'hover:text-blue-300 transition duration-200';
+    mounted() {
+      window.addEventListener('scroll', this.handleScroll);
     },
-    iconStrokeColor() {
-      return this.isScrolled ? 'currentColor' : '#ffffff';
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.handleScroll);
     },
-    brandTextSize() {
-      return 'text-2xl md:text-xl';
+    methods: {
+      toggleMenu() {
+        this.isMenuOpen = !this.isMenuOpen;
+      },
+      closeMenu() {
+        this.isMenuOpen = false;
+      },
+      handleScroll() {
+        this.isScrolled = window.scrollY > 0;
+      },
     },
-    navLinkTextSize() {
-      return 'text-lg';
-    },
-    mobileNavLinkTextSize() {
-      return 'text-xl';
-    },
-  },
-  mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.handleScroll);
-  },
-  methods: {
-    toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-    },
-    closeMenu() {
-      this.isMenuOpen = false;
-    },
-    handleScroll() {
-      this.isScrolled = window.scrollY > 0;
-    },
-  },
-};
+  };
 </script>
 
 <style scoped>
-/* Gradient Overlay Fix */
-nav .gradient-overlay {
-  height: 4rem;
-}
+  /* Gradient Overlay Fix */
+  nav .gradient-overlay {
+    height: 4rem;
+  }
 
-/* Mobile Menu Transition */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
+  /* Mobile Menu Transition */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.3s ease;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
 </style>
