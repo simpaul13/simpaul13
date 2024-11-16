@@ -37,7 +37,9 @@
         </div>
 
         <!-- Navigation Links (Desktop) -->
-        <div class="hidden md:flex flex-1 space-x-8" :class="navSettings.navLinkPosition">
+        <div class="hidden md:flex flex-1 space-x-8" 
+            :class="navSettings.navLinkPosition === 'justify-center' ?  'justify-center' : 
+            navSettings.navLinkPosition === 'justify-end' ? 'justify-end' : 'justify-start'">
             <div v-for="link in navLinks" :key="link.name">
                 <a
                     v-if="link.type === 'a'"
@@ -54,7 +56,43 @@
                 {{ link.name }}
                 </router-link>
             </div>
-           
+
+            <!-- Switch to Light/Dark Mode -->
+            <button
+                @click="toggleColorMode"
+                class="focus:outline-none"
+              >
+                <svg
+                  class="w-6 h-6"
+                  :class="[textClasses]"
+                  fill="none"
+                  :stroke="iconStrokeColor"
+                  viewBox="0 0 24 24"
+                  v-if="colorMode === 'light'"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  ></path>
+                </svg>
+                <svg
+                  class="w-6 h-6"
+                  :class="[textClasses]"
+                  fill="none"
+                  :stroke="iconStrokeColor"
+                  viewBox="0 0 24 24"
+                  v-else
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                  ></path>
+                </svg>
+            </button>
         </div>
       </div>
     </div>
@@ -89,24 +127,25 @@
     </transition>
   </nav>
 </template>
-
 <script>
-  import { navLinks, navSettings } from '~/assets/js/data';
+  import data from '~/assets/js/data.json';
 
   export default {
+    
     data() {
       return {
-        navLinks,
-        navSettings,
+        navSettings: data.navSettings,
+        navLinks: data.navLinks,
         isMenuOpen: false,
         isScrolled: false,
+        colorMode: null,
       };
     },
     computed: {
       navClasses() {
         const baseClasses =
           'fixed w-full z-50 transition-all duration-300 ease-in-out';
-        const scrolledBackground = 'dark:bg-black bg-white  shadow-md';
+        const scrolledBackground = 'dark:bg-black bg-white shadow-md';
         return [
           baseClasses,
           this.isScrolled ? scrolledBackground : 'bg-transparent',
@@ -132,6 +171,15 @@
       },
     },
     mounted() {
+      // Initialize color mode from saved preference or system preference
+      const savedColorMode = localStorage.getItem('color-mode');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      this.colorMode = savedColorMode || (prefersDark ? 'dark' : 'light');
+      this.$colorMode.preference = this.colorMode; // Set the app's color mode
+      document.documentElement.classList.toggle('dark', this.colorMode === 'dark');
+
+      // Add scroll event listener
       window.addEventListener('scroll', this.handleScroll);
     },
     beforeDestroy() {
@@ -146,6 +194,14 @@
       },
       handleScroll() {
         this.isScrolled = window.scrollY > 0;
+      },
+      toggleColorMode() {
+        this.colorMode = this.colorMode === 'light' ? 'dark' : 'light';
+        this.$colorMode.preference = this.colorMode;
+        localStorage.setItem('color-mode', this.colorMode);
+
+        // Toggle dark mode class on the root element
+        document.documentElement.classList.toggle('dark', this.colorMode === 'dark');
       },
     },
   };
