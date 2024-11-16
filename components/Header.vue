@@ -145,7 +145,7 @@
       navClasses() {
         const baseClasses =
           'fixed w-full z-50 transition-all duration-300 ease-in-out';
-        const scrolledBackground = 'dark:bg-black bg-white shadow-md';
+        const scrolledBackground = 'dark:bg-slate-800 bg-white shadow-md';
         return [
           baseClasses,
           this.isScrolled ? scrolledBackground : 'bg-transparent',

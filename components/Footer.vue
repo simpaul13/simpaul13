@@ -1,5 +1,5 @@
 <template>
-  <footer class="dark:bg-black dark:text-gray-300 p-4 text-sm">
+  <footer class="dark:bg-slate-800 dark:text-gray-300 p-4 text-sm">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <!-- Footer Left Section -->
       <div class="text-center md:text-left">
