@@ -1,7 +1,7 @@
 // data.js
 export const navSettings = {
     showBrand: false,
-    navLinkPosition: 'justify-center',
+    navLinkPosition: 'justify-end', // 'justify-end' | 'justify-start' | 'justify-center'
 }
 export const navLinks = [
     { 
