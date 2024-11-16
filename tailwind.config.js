@@ -3,6 +3,9 @@ export default {
   content: [],
   theme: {
     extend: {},
+    container: {
+      padding: '18rem'
+    }
   },
   plugins: [],
 }
