@@ -145,7 +145,7 @@
       navClasses() {
         const baseClasses =
           'fixed w-full z-50 transition-all duration-300 ease-in-out';
-        const scrolledBackground = 'dark:bg-slate-800 bg-white shadow-md';
+        const scrolledBackground = 'dark:bg-slate-800 bg-stone-200 shadow-md';
         return [
           baseClasses,
           this.isScrolled ? scrolledBackground : 'bg-transparent',
@@ -198,6 +198,8 @@
       toggleColorMode() {
         this.colorMode = this.colorMode === 'light' ? 'dark' : 'light';
         this.$colorMode.preference = this.colorMode;
+
+        // Save color mode preference to local storage
         localStorage.setItem('color-mode', this.colorMode);
 
         // Toggle dark mode class on the root element
