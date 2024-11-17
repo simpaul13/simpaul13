@@ -3,6 +3,7 @@
     <Header />
     <NuxtRouteAnnouncer />
     <NuxtWelcome />
+    <Experience />
     <Skills />
     <Footer />
   </div>
