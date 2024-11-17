@@ -7,6 +7,8 @@ export default {
       padding: '18rem'
     }
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animated')
+  ],
 }
 
