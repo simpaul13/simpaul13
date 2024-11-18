@@ -10,11 +10,6 @@
             "type": "a"
         },
         {
-            "name": "About",
-            "href": "#about",
-            "type": "a"
-        },
-        {
             "name": "Contact",
             "href": "#contact",
             "type": "a"

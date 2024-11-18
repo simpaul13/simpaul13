@@ -128,14 +128,12 @@
   </nav>
 </template>
 <script>
-  import data from '~/assets/js/data.json';
 
   export default {
-    
+    props: ['navSettings', 'navLinks'],
+
     data() {
       return {
-        navSettings: data.navSettings,
-        navLinks: data.navLinks,
         isMenuOpen: false,
         isScrolled: false,
         colorMode: null,
