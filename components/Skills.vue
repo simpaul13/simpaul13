@@ -16,13 +16,13 @@
                   : 'intersect-opacity-0'
             ] :
             skill.name === 'Backend' ? [
-               'animate-delay-300',
+               'animate-delay-500',
                isBackendVisible
                   ? 'animate-fade-down intersect-opacity-100'
                   : 'intersect-opacity-0'
             ] : 
             skill.name === 'Tools' ? [
-               'animate-delay-500',
+               'animate-delay-1000',
                isToolsVisible
                   ? 'animate-fade-down intersect-opacity-100'
                   : 'intersect-opacity-0'
