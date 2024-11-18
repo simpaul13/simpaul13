@@ -64,7 +64,7 @@
 <script>
 import { ref, onMounted } from "vue";
 export default {
-
+   props: ["skills"],
    data() {
 
       return {
@@ -72,125 +72,6 @@ export default {
          isFrontendVisible: true,
          isBackendVisible: true,
          isToolsVisible: true,
-         skills: [
-            {
-               name: "Frontend",
-               subSkills: [
-                  {
-                     name: "Vue",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
-                     bgSkill: "bg-green-500",
-                     tobgSkill: "hover:to-green-500",
-                  },
-                  {
-                     name: "Nuxt",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nuxtjs/nuxtjs-original.svg",
-                     bgSkill: "bg-green-500",
-                     tobgSkill: "hover:to-green-500",
-                  },
-                  {
-                     name: "Tailwind",
-                     icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/tailwindcss/tailwindcss-original.svg",
-                     bgSkill: "bg-sky-500",
-                     tobgSkill: "hover:to-sky-500",
-                  },
-                  {
-                     name: "HTML",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-                     bgSkill: "bg-orange-500",
-                     tobgSkill: "hover:to-orange-500",
-                  },
-                  {
-                     name: "CSS",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-                     bgSkill: "bg-blue-500",
-                     tobgSkill: "hover:to-blue-500",
-                  },
-                  {
-                     name: "JavaScript",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-                     bgSkill: "bg-yellow-500",
-                     tobgSkill: "hover:to-yellow-500",
-                  },
-                  {
-                     name: "Axios",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/axios/axios-plain.svg",
-                     bgSkill: "bg-blue-800",
-                     tobgSkill: "hover:to-blue-800",
-                  }
-               ],
-            },
-            {
-               name: "Backend",
-               subSkills: [
-                  {
-                     name: "PHP",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-                     bgSkill: "bg-blue-900",
-                     tobgSkill: "hover:to-blue-900",
-                  },
-                  {
-                     name: "Laravel",
-                     icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/laravel/laravel-original.svg",
-                     bgSkill: "bg-red-500",
-                     tobgSkill: "hover:to-red-500",
-                  },
-                  {
-                     name: "MySQL",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-                     bgSkill: "bg-blue-500",
-                     tobgSkill: "hover:to-blue-500",
-                  },
-                  {
-                     name: "AdonisJS",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/adonisjs/adonisjs-original.svg",
-                     bgSkill: "bg-blue-900",
-                     tobgSkill: "hover:to-blue-900",
-                  },
-               ],
-            },
-            {
-               name: "Tools",
-               subSkills: [
-                  {
-                     name: "Git",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-                     bgSkill: "bg-orange-700",
-                     tobgSkill: "hover:to-orange-700",
-                  },
-                  {
-                     name: "NPM",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
-                     bgSkill: "bg-red-500",
-                     tobgSkill: "hover:to-red-500",
-                  },
-                  {
-                     name: "GitHub",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
-                     bgSkill: "bg-gray-500",
-                     tobgSkill: "hover:to-gray-500",
-                  },
-                  {
-                     name: "Visual Studio Code",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
-                     bgSkill: "bg-blue-500",
-                     tobgSkill: "hover:to-blue-500",
-                  },
-                  {
-                     name: "Postman",
-                     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
-                     bgSkill: "bg-orange-700",
-                     tobgSkill: "hover:to-orange-700",
-                  },
-                  {
-                     name: "Ubuntu",
-                     icon: "https://raw.githubusercontent.com/devicons/devicon/6910f0503efdd315c8f9b858234310c06e04d9c0/icons/ubuntu/ubuntu-original.svg",
-                     bgSkill: "bg-orange-600",
-                     tobgSkill: "hover:to-orange-600",
-                  },
-               ],
-            },
-         ],
          refs: {},
       };
    },

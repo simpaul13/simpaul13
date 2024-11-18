@@ -4,7 +4,8 @@
     <NuxtRouteAnnouncer />
     <NuxtWelcome />
     <Experience />
-    <Skills />
+    <WorkOn :projects="projects" />
+    <Skills :skills="skills" />
     <Footer />
   </div>
 </template>
@@ -15,6 +16,9 @@ export default {
     return {
       navSettings: data.navSettings,
       navLinks: data.navLinks,
+      socialLinks: data.socialLinks,
+      skills: data.skills,
+      projects: data.projects,
     };
   }
 }
